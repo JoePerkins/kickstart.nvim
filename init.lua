@@ -745,6 +745,8 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
+  { 'stevearc/oil.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' }, opts = {} },
+
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
@@ -867,6 +869,17 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+require('oil').setup {
+  columns = {
+    'icon',
+    -- "permissions",
+    -- "size",
+    -- "mtime",
+  },
+}
+
+vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
 
 -- NOTE: This breaks the config if it's before the actual treesitter stuff.
 require('nvim-treesitter.install').compilers = { 'clang' }
